@@ -33,7 +33,7 @@ namespace ADO_AddressBook
                 {
                     while (reader.Read())
                     {
-                        
+
                         addressModel.FName = reader["FirstName"] == DBNull.Value ? default : reader["FirstName"].ToString();
                         addressModel.LName = reader["LastName"] == DBNull.Value ? default : reader["LastName"].ToString();
                         addressModel.Address = reader["Address"] == DBNull.Value ? default : reader["Address"].ToString();
@@ -44,7 +44,7 @@ namespace ADO_AddressBook
                         addressModel.Email = reader["EmailId"] == DBNull.Value ? default : reader["EmailId"].ToString();
 
 
-                        Console.WriteLine("{0} {1} {2}  {3} {4} {5}  {6} {7}   ", addressModel.FName, addressModel.LName, addressModel.Address, addressModel.City, addressModel.State, addressModel.ZipCode, addressModel.Address, addressModel.Phone, addressModel.Email);
+                        Console.WriteLine("{0} {1} {2}  {3} {4} {5}  {6} {7}", addressModel.FName, addressModel.LName, addressModel.Address, addressModel.City, addressModel.State, addressModel.ZipCode, addressModel.Address, addressModel.Phone, addressModel.Email);
                         Console.WriteLine("\n");
                     }
                 }
@@ -64,48 +64,8 @@ namespace ADO_AddressBook
             {
                 this.sqlconnection.Close();
             }
-
-
-        }
-
-        public void AddAddress(AddressModel model)
-        {
-            try
-            {
-
-                using (this.sqlconnection)
-                {
-                    SqlCommand command = new SqlCommand("dbo.spAddAddressBookDetails", this.sqlconnection);
-                    command.CommandType = CommandType.StoredProcedure;
-                    command.Parameters.AddWithValue("@FName", model.FName);
-                    command.Parameters.AddWithValue("@LName", model.LName);
-                    command.Parameters.AddWithValue("@Address", model.Address);
-                    command.Parameters.AddWithValue("@city", model.City);
-                    command.Parameters.AddWithValue("@StateName", model.State);
-                    command.Parameters.AddWithValue("@PhoneNum", model.Phone);
-                    command.Parameters.AddWithValue("@ZipCode", model.ZipCode);
-                    command.Parameters.AddWithValue("@EmailId", model.Email);
-                    sqlconnection.Open();
-                    var result = command.ExecuteNonQuery();
-
-                    if (result != 0)
-                    {
-                        Console.WriteLine("Successfully inserted the records");
-                    }
-                    else
-                    {
-                        Console.WriteLine("Insertion of result is unsuccessfull");
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-            finally
-            {
-                sqlconnection.Close();
-            }
         }
     }
 }
+
+       
