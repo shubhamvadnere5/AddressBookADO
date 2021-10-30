@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
+
 using System.Text;
 using System.Threading.Tasks;
 
@@ -23,7 +23,7 @@ namespace ADO_AddressBook
                 //Creating object for addressModel and access the fields
                 AddressModel addressModel = new AddressModel();
                 //Retrieve query
-                string query = @"select * from AddressBook";
+                string query = @"select * from AddressBook where City='Jalgaon' ";
                 SqlCommand sqlCommand = new SqlCommand(query, sqlconnection);
                 //Open the connection
                 this.sqlconnection.Open();
@@ -65,7 +65,42 @@ namespace ADO_AddressBook
                 this.sqlconnection.Close();
             }
         }
+        public void UpdateAddress(AddressModel model)
+        {
+            try
+            {
+                using (this.sqlconnection)
+                {
+                    AddressModel DisplayModel = new AddressModel();
+                    SqlCommand command = new SqlCommand("dbo.spUpdateAddressBookDetails", this.sqlconnection);
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@FirstName", model.FName);
+                    command.Parameters.AddWithValue("@LastName", model.LName);
+                    command.Parameters.AddWithValue("@Address", model.Address);
+                    sqlconnection.Open();
+                    int result = command.ExecuteNonQuery();
+                    if (result != 0)
+                    {
+                        Console.WriteLine("Update Sucessfull");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Unsucessfull");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                this.sqlconnection.Close();
+            }
+        }
     }
 }
+    
+
 
        

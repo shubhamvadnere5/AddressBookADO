@@ -12,17 +12,12 @@ namespace ADO_AddressBook
         {
             AddressBookRepository addressBook = new AddressBookRepository();
             addressBook.GetAllAddressBook();
-            // For adding employee
-            //AddressModel model = new AddressModel();
-            //model.FName = "Shubham";
-            //model.LName = "Vadnere";
-            //model.Address = "Mulund";
-            //model.City = "Navi Mumbai";
-            //model.State = "Maharashtra";
-            //model.Phone = 8888156666;
-            //model.Email = "ShubhamVadnere@gmail.com";
-            //model.ZipCode = 421007;
-            //addressBook.AddAddress(model);
+            //For adding employee
+           AddressModel model = new AddressModel();
+            //model.FName = "Varun";
+            //model.LName = "Lad";
+            //model.Phone = 9834471126;
+            //addressBook.UpdateAddress(model);
             Console.ReadLine();
         }
     }
