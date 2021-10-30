@@ -14,8 +14,6 @@ namespace ADO_AddressBook
         public string Email { get; set; }
         public double ZipCode { get; set; }
         public double Phone { get; set; }
-      
-
 
     }
 }

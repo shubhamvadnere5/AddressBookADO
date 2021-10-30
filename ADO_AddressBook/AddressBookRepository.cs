@@ -23,7 +23,7 @@ namespace ADO_AddressBook
                 //Creating object for addressModel and access the fields
                 AddressModel addressModel = new AddressModel();
                 //Retrieve query
-                string query = @"select * from AddressBook where City='Jalgaon' ";
+                string query = @"select * from AddressBook";
                 SqlCommand sqlCommand = new SqlCommand(query, sqlconnection);
                 //Open the connection
                 this.sqlconnection.Open();
@@ -42,6 +42,8 @@ namespace ADO_AddressBook
                         addressModel.ZipCode = Convert.ToDouble(reader["ZipCode"] == DBNull.Value ? default : reader["ZipCode"]);
                         addressModel.Phone = Convert.ToDouble(reader["PhoneNum"] == DBNull.Value ? default : reader["PhoneNum"]);
                         addressModel.Email = reader["EmailId"] == DBNull.Value ? default : reader["EmailId"].ToString();
+                        
+
 
 
                         Console.WriteLine("{0} {1} {2}  {3} {4} {5}  {6} {7}", addressModel.FName, addressModel.LName, addressModel.Address, addressModel.City, addressModel.State, addressModel.ZipCode, addressModel.Address, addressModel.Phone, addressModel.Email);

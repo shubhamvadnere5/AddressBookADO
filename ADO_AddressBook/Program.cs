@@ -14,10 +14,10 @@ namespace ADO_AddressBook
             addressBook.GetAllAddressBook();
             //For adding employee
            AddressModel model = new AddressModel();
-            //model.FName = "Varun";
-            //model.LName = "Lad";
-            //model.Phone = 9834471126;
-            //addressBook.UpdateAddress(model);
+            model.FName = "Varun";
+            model.LName = "Lad";
+            model.Address="Panvel";
+            addressBook.UpdateAddress(model);
             Console.ReadLine();
         }
     }
